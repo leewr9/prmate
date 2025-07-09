@@ -1,5 +1,5 @@
 import pytest
-from app.llm.chains import ReviewChain
+from app.llm.chain import ReviewChain
 
 def test_review_chain():
     chain = ReviewChain()
