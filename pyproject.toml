@@ -1,0 +1,12 @@
+[project]
+name = "prmate"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "langchain>=0.3.26",
+    "langchain-ollama>=0.3.3",
+    "pydantic>=2.11.7",
+    "pytest>=8.4.1",
+]
