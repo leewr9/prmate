@@ -27,39 +27,50 @@ This project requires either a **Ollama llama3** instance or an **OpenAI API key
 ### Choose Your LLM Backend
 You can choose one of the following two options to power the review engine
 
-#### Use Ollama (Recommended for self-hosted runners)
-If you're using GitHub Actions with a `self-hosted` runner, you can run `Ollama` locally and connect via HTTP.
+#### Use Ollama
+If you have your own `Ollama` server running, you can connect to it directly via HTTP by setting the environment variable
 
-- **Set Environment Variable**
-    ```bash
-    export OLLAMA_HOST=http://localhost:11434
-    ```
+```bash
+export OLLAMA_HOST=http://your-ollama-server:11434
+```
 
-- **Install Ollama (based on OS)**
-    - Windows (via WSL)
-        - Install WSL: [Microsoft Docs](https://learn.microsoft.com/en-us/windows/wsl/install)
-        - Inside WSL terminal
+If you don’t have a server yet, you can register a `self-hosted` runner on GitHub and run Ollama locally on your machine.
+
+- **Register your GitHub runner**
+    - `https://github.com/<your-username>/<your-repository>/settings/actions/runners/new`
+    - ex) `https://github.com/leewr9/prmate/settings/actions/runners/new`
+
+- **Run Ollama locally (self-hosted runner)**
+    - **Set Environment Variable**
+        ```bash
+        export OLLAMA_HOST=http://127.0.0.1:11434
+        ```
+
+    - **Install Ollama (based on OS)**
+        - Windows (via WSL)
+            - Install WSL: [Microsoft Docs](https://learn.microsoft.com/en-us/windows/wsl/install)
+            - Inside WSL terminal
+                ```bash
+                curl -fsSL https://ollama.com/install.sh | sh
+                ollama serve
+                ```
+
+        - macOS
+            ```bash
+            brew install ollama
+            ollama serve
+            ```
+
+        - Linux
             ```bash
             curl -fsSL https://ollama.com/install.sh | sh
             ollama serve
             ```
-
-    - macOS
+    - **Pull the Required Model**
         ```bash
-        brew install ollama
-        ollama serve
+        ollama pull llama3
         ```
-
-    - Linux
-        ```bash
-        curl -fsSL https://ollama.com/install.sh | sh
-        ollama serve
-        ```
-- **Pull the Required Model**
-    ```bash
-    ollama pull llama3
-    ```
-    This will download the llama3 model used for generating code review comments.
+        This will download the llama3 model used for generating code review comments.
 
 ### Use OpenAI
 If you're not using a self-hosted runner, you will need to use `OpenAI’s API`.
