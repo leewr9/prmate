@@ -1,4 +1,4 @@
-name: PRMate Self Hosted
+name: PRMate Review (OpenAI)
 
 on:
   pull_request:
