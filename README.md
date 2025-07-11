@@ -72,7 +72,7 @@ If you don’t have a server yet, you can register a `self-hosted` runner on Git
         ```
         This will download the llama3 model used for generating code review comments.
 
-### Use OpenAI
+#### Use OpenAI
 If you're not using a self-hosted runner, you will need to use `OpenAI’s API`.
 
 ```bash
