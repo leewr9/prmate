@@ -19,7 +19,7 @@ class ReviewChain:
         now = datetime.now().strftime("%Y-%m-%d %H:%M")
 
         template = f"""
-# PRMate Code Review Report
+## PRMate Code Review Report
 
 {review_text.strip()}
 
