@@ -5,7 +5,7 @@ GITHUB_TOKEN = os.getenv("GITHUB_TOKEN", None)
 OPEN_API_KEY = os.getenv("OPEN_API_KEY", None)
 OLLAMA_HOST = os.getenv("OLLAMA_HOST", "http://127.0.0.1:11434")
 
-REVIEW_STRICT = os.getenv("REVIEW_STRICT", False)
+REVIEW_STRICT = os.getenv("REVIEW_STRICT", "False").lower() == "true"
 REVIEW_LANG = os.getenv("REVIEW_LANG", "Korean")
 
 if not GITHUB_TOKEN:
