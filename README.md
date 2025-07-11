@@ -101,11 +101,7 @@ If not set, it defaults to `Korean`.
 This project includes a pre-configured GitHub Actions workflow for running PR reviews.
 
 ```bash
-# Workflow for running PRMate code reviews using a self-hosted Ollama server
-.github/workflows/prmate-review-ollama.yml   
-
- # Workflow for running PRMate code reviews using OpenAI API on GitHub-hosted runners
-.github/workflows/prmate-review-openai.yml 
+.github/workflows/prmate-review.yml   
 ```
 
 ### Customizing the Workflow
