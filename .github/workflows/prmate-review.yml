@@ -18,7 +18,7 @@ env:
 jobs:
   
   job-with-openai:
-    if: secrets.OPEN_API_KEY != ''
+    if: ${{ secrets.OPEN_API_KEY != '' }}
     runs-on: ubuntu-latest
 
     steps:
@@ -50,7 +50,7 @@ jobs:
 
 
   job-with-ollama:
-    if: secrets.OPEN_API_KEY == ''
+    if: ${{ secrets.OPEN_API_KEY == '' }}
     runs-on: self-hosted
 
     steps:
