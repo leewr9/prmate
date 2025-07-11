@@ -23,7 +23,7 @@ jobs:
     steps:
       - id: set
         run: |
-          if [ -z "${{ secrets.OPEN_API_KEY }}" ]; then
+          if [ -z "${{ env.OPEN_API_KEY }}" ]; then
             echo "use_openai=false" >> "$GITHUB_OUTPUT"
           else
             echo "use_openai=true" >> "$GITHUB_OUTPUT"
@@ -54,8 +54,8 @@ jobs:
 
     - name: Run PRMate code review
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        OPEN_API_KEY: ${{ secrets.OPEN_API_KEY }}
+        GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
+        OPEN_API_KEY: ${{ env.OPEN_API_KEY }}
         REVIEW_LANG: ${{ env.REVIEW_LANG }}
         REVIEW_STRICT: ${{ env.REVIEW_STRICT }}
       run: |
@@ -87,8 +87,8 @@ jobs:
 
     - name: Run PRMate code review
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        OLLAMA_HOST: ${{ secrets.OLLAMA_HOST }}
+        GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
+        OLLAMA_HOST: ${{ env.OLLAMA_HOST }}
         REVIEW_LANG: ${{ env.REVIEW_LANG }}
         REVIEW_STRICT: ${{ env.REVIEW_STRICT }}
       run: |
