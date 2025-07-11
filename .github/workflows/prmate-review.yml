@@ -16,9 +16,22 @@ env:
   REVIEW_STRICT: False  # Whether to use strict review formatting ("True" to enable strict mode)
 
 jobs:
+  decide-runner:
+    runs-on: ubuntu-latest
+    outputs:
+      use_openai: ${{ steps.set.outputs.use_openai }}
+    steps:
+      - id: set
+        run: |
+          if [ -z "${{ secrets.OPEN_API_KEY }}" ]; then
+            echo "use_openai=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "use_openai=true" >> "$GITHUB_OUTPUT"
+          fi
   
   job-with-openai:
-    if: ${{ secrets.OPEN_API_KEY != '' }}
+    needs: decide-runner
+    if: ${{ needs.decide-runner.outputs.use_openai == 'true' }}
     runs-on: ubuntu-latest
 
     steps:
@@ -50,7 +63,8 @@ jobs:
 
 
   job-with-ollama:
-    if: ${{ secrets.OPEN_API_KEY == '' }}
+    needs: decide-runner
+    if: ${{ needs.decide-runner.outputs.use_openai == 'false' }}
     runs-on: self-hosted
 
     steps:
