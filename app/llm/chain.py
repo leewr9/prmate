@@ -1,7 +1,7 @@
 from datetime import datetime
 from langchain_ollama import ChatOllama
 
-from app.config import OLLAMA_HOST, REVIEW_LANG
+from app.config import OLLAMA_HOST, REVIEW_STRICT, REVIEW_LANG
 from app.llm.prompt import REVIEW_PROMPT_TEMPLATE, STRICT_REVIEW_PROMPT_TEMPLATE
 
 
@@ -10,7 +10,10 @@ class ReviewChain:
         self.llm_client = ChatOllama(
             model="llama3", temperature=0.8, base_url=OLLAMA_HOST
         )
-        self.chain = REVIEW_PROMPT_TEMPLATE | self.llm_client
+        if REVIEW_STRICT:
+            self.chain = REVIEW_PROMPT_TEMPLATE | self.llm_client
+        else:
+            self.chain = STRICT_REVIEW_PROMPT_TEMPLATE | self.llm_client
 
     def format_review_comment(self, review_text: str) -> str:
         now = datetime.now().strftime("%Y-%m-%d %H:%M")
