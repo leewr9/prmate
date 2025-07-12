@@ -1,5 +1,9 @@
 name: "Run PRMate Review"
-description: "Run uv commands to execute PRMate code review"
+description: >
+  Executes PRMate's automated code review process for a given Pull Request.
+  This workflow runs the necessary commands to analyze the code changes and
+  provide review feedback.
+
 author: "Rooam Lee"
 branding:
   color: 'purple'
@@ -7,11 +11,17 @@ branding:
 
 inputs:
   pr_number:
-    description: 'Pull Request number'
+    description: >
+      The number of the Pull Request to review.
+      This is required to specify which PR PRMate should analyze.
     required: true
   repo_name:
-    description: 'Repository full name'
+    description: >
+      The full name of the repository containing the Pull Request,
+      including the owner. For example, 'owner/repository-name'.
     required: true
+    default: ${{ github.repository }}
+
 
 runs:
   using: "composite"
