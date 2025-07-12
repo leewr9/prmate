@@ -20,7 +20,7 @@ jobs:
 
     steps:
     - name: PRMate Review
-      uses: leewr9/prmate@v1.0.0
+      uses: leewr9/prmate@v1.0.1
       with:
         pr-number: ${{ inputs.pr_number }}
         repository: ${{ github.repository }}
