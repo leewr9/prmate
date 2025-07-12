@@ -10,6 +10,9 @@ REVIEW_PROMPT_TEMPLATE = PromptTemplate(
         "Important guidelines:\n"
         "- Use only markdown bullet points.\n"
         "- Do not add any text outside the bullet points.\n"
+        "- Each file must begin with a markdown heading in the format: ### <filename>\n"
+        "- List all comments related to that file underneath using markdown bullet points.\n"
+        "- At the end of the review, include a general summary using the '>' markdown quote format.\n"
         "- Write the entire review strictly in {language}, without mixing languages.\n"
         "- Keep the review professional and easy to understand.\n"
     )
@@ -24,9 +27,12 @@ STRICT_REVIEW_PROMPT_TEMPLATE = PromptTemplate(
         "Your response must strictly adhere to the following rules:\n"
         "1. Provide your review exclusively as markdown bullet points.\n"
         "2. Do NOT include any text outside the bullet points — no introductions, summaries, or extra comments.\n"
-        "3. Write the entire review strictly in {language} only; mixing languages is NOT allowed.\n"
-        "4. Focus on required improvements, best practices compliance, potential bugs, and risks.\n"
-        "5. Keep the tone professional, clear, and concise.\n"
-        "6. Any violation of these instructions should be considered an error.\n"
+        "3. Each reviewed file must begin with a markdown heading in the format: ### <filename>\n"
+        "4. Under each heading, list related issues using markdown bullet points.\n"
+        "5. At the end of the review, include a general summary using the '>' markdown quote format.\n"
+        "6. Write the entire review strictly in {language} only; mixing languages is NOT allowed.\n"
+        "7. Focus on required improvements, best practices compliance, potential bugs, and risks.\n"
+        "8. Keep the tone professional, clear, and concise.\n"
+        "9. Any violation of these instructions should be considered an error.\n"
     )
 )
