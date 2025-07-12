@@ -20,7 +20,8 @@ inputs:
   token:
     description: >
       GitHub token for API authentication.
-      Usually set to ${{ secrets.GITHUB_TOKEN }} in workflow.
+      Needs write access to issues and pull requests
+      in order to post review comments.
     required: true
     default: ${{ github.token }}
   openai-api-key:
