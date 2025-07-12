@@ -20,9 +20,9 @@ jobs:
 
     steps:
     - name: PRMate Review
-      uses: leewr9/prmate-review@v1.0.0
+      uses: leewr9/prmate@v1.0.0
       with:
-        pr-number: ${{ inputs.pr_number }} 
+        pr-number: ${{ inputs.pr_number }}
         repository: ${{ github.repository }}
         token: ${{ secrets.GITHUB_TOKEN }}
         openai-api-key: ${{ secrets.OPENAI_API_KEY }}
