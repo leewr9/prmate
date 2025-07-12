@@ -48,11 +48,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      with:
-        repository: leewr9/prmate
-        path: prmate-dist
     - name: Set up Python 3.11
       uses: actions/setup-python@v3
       with:
@@ -61,7 +56,11 @@ runs:
     - name: Install uv and Sync dependencies
       shell: bash
       run: |
-        cd prmate-dist
+        pwd
+        ls
+        cd ${{ github.action_path }}
+        pwd
+        ls
         python -m pip install --upgrade pip
         pip install uv
         uv sync
@@ -75,5 +74,9 @@ runs:
         REVIEW_LANG: ${{ inputs.review-language }}
         REVIEW_STRICT: ${{ inputs.review-strict }}
       run: |
-        cd prmate-dist
+        pwd
+        ls
+        cd ${{ github.action_path }}
+        pwd
+        ls
         uv run python -m app.main ${{ inputs.pr-number }} ${{ inputs.repository }}
