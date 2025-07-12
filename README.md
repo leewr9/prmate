@@ -3,11 +3,42 @@
 Your personal AI buddy that automatically reviews your GitHub Pull Requests, offering clear, helpful, and contextual feedback on your code changes.  
 Perfect for solo developers looking for quick, intelligent code reviews.
 
+---
 
-## Setup Instructions
+This action runs PRMate’s code review engine on a specified Pull Request.  
+It fetches metadata and code diffs via GitHub's API, then uses an LLM to generate structured review feedback.
+
+The review is contextualized using PR metadata, file changes, and optionally your custom prompt settings.  
+All logic runs directly inside your GitHub Actions workflow, with no need for external servers.
+
+[Advanced Usage](#advanced-usage) — including local CLI execution, debugging, and self-hosted workflows.
+
+## What's new
+
+Please refer to the [release page](https://github.com/leewr9/prmate/releases/latest) for the latest release notes.
+
+## Usage
+```yml
+- name: Run PRMate Review
+  uses: leewr9/prmate-review@v1
+  with:
+    # The number of the Pull Request to review.
+    # Typically passed from the event payload.
+    #
+    # Example: 42
+    pr_number: ${{ github.event.pull_request.number }}
+
+    # The full name of the repository in the format owner/repo.
+    #
+    # Default: ${{ github.repository }}
+    # Example: leewr9/prmate
+    repo_name: ${{ github.repository }}
+
+```
+
+## Advanced Usage
 This project requires either a **Ollama llama3** instance or an **OpenAI API key** to generate automated code reviews.
 
-### Usage
 1. **Clone the repository**
     ```bash
     git clone https://github.com/leewr9/prmate.git
@@ -81,7 +112,7 @@ export OPENAI_API_KEY=your_openai_api_key
 You do not need to install anything locally in this case.
 
 
-## Environment Variables
+### Environment Variables
 To configure this project, you need to define several environment variables. These can be set in your local .env file, in your shell environment, or as GitHub Actions secrets.
 
 - `GITHUB_TOKEN` **(required)**
@@ -108,14 +139,14 @@ Use `Korean` or `English` depending on your target audience.
 If not set, it defaults to `Korean`.
 
 
-## GitHub Actions Configuration
+### GitHub Actions Configuration
 This project includes a pre-configured GitHub Actions workflow for running PR reviews.
 
 ```bash
 .github/workflows/prmate-review.yml   
 ```
 
-### Customizing the Workflow
+**Customizing the Workflow**
 - Trigger on specific pull requests
 - Set environment variables for Ollama or OpenAI
 - Run on a self-hosted or GitHub-hosted runner
