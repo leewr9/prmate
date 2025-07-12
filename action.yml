@@ -53,16 +53,18 @@ runs:
         python-version: "3.11"
         
     - name: Install uv and Sync dependencies
+      shell: bash
       run: |
         python -m pip install --upgrade pip
         pip install uv
         uv sync
 
     - name: Run PRMate review
+      shell: bash
       env:
         GITHUB_TOKEN: ${{ inputs.token }}
         OPENAI_API_KEY: ${{ inputs.openai-api-key }}
         OLLAMA_HOST: ${{ inputs.ollama-host }}
         REVIEW_LANG: ${{ inputs.review-language }}
-        REVIEW_STRICT: ${{ env.review-strict }}
+        REVIEW_STRICT: ${{ inputs.review-strict }}
       run: uv run python -m app.main ${{ inputs.pr-number }} ${{ inputs.repository }}
