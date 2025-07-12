@@ -183,9 +183,7 @@ If not set, it defaults to `Korean`.
 ### GitHub Actions Configuration
 This project includes a pre-configured GitHub Actions workflow for running PR reviews.
 
-```bash
-.github/workflows/prmate-review.yml   
-```
+[Example Workflow](https://github.com/leewr9/prmate/blob/master/.github/workflows/example.yml)
 
 **Customizing the Workflow**
 - Trigger on specific pull requests
