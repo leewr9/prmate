@@ -1,0 +1,31 @@
+name: "Run PRMate Review"
+description: "Run uv commands to execute PRMate code review"
+author: "Rooam Lee"
+branding:
+  color: 'purple'
+  icon: 'check'
+
+inputs:
+  pr_number:
+    description: 'Pull Request number'
+    required: true
+  repo_name:
+    description: 'Repository full name'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.11"
+        
+    - name: Install uv and Sync dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install uv
+        uv sync
+
+    - name: Run PRMate review
+      run: uv run python -m app.main ${{ inputs.pr_number }} ${{ inputs.repo_name }}
