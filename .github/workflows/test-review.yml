@@ -1,0 +1,25 @@
+name: PRMate Review
+
+on:
+  workflow-dispatch:
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  test-review:
+    runs-on: self-hosted
+
+    steps:
+    - name: PRMate Review
+      uses: leewr9/prmate-review@v1.0.0
+      with:
+        pr-number: ${{ github.event.pull_request.number }}
+        repository: ${{ github.repository }}
+        token: ${{ secrets.GITHUB_TOKEN }}
+        openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+        ollama-host: 'http://127.0.0.1:11434'
+        review-language: 'English'
+        review-strict: 'True'
