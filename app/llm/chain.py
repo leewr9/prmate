@@ -9,17 +9,21 @@ class ReviewChain:
     def __init__(self):
         if USE_OPENAI:
             self.model = "gpt-4o-mini"
+            print(f"Using OpenAI model: {self.model}")
             self.llm_client = ChatOpenAI(
                 model=self.model, temperature=0.8, max_tokens=1024,
             )
         else:
             self.model = "llama3"
+            print(f"Using Ollama model: {self.model} with base_url={OLLAMA_HOST}")
             self.llm_client = ChatOllama(
                 model=self.model, temperature=0.8, base_url=OLLAMA_HOST
             )
         if not REVIEW_STRICT:
+            print("Using non-strict review prompt template")
             self.chain = REVIEW_PROMPT_TEMPLATE | self.llm_client
         else:
+            print("Using strict review prompt template")
             self.chain = STRICT_REVIEW_PROMPT_TEMPLATE | self.llm_client
 
     def format_review_comment(self, review_text: str) -> str:
