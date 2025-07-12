@@ -1,4 +1,4 @@
-name: PRMate Review
+name: PRMate Test Review
 
 on:
   workflow_dispatch:
