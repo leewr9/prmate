@@ -56,11 +56,7 @@ runs:
     - name: Install uv and Sync dependencies
       shell: bash
       run: |
-        pwd
-        ls
         cd ${{ github.action_path }}
-        pwd
-        ls
         python -m pip install --upgrade pip
         pip install uv
         uv sync
@@ -74,9 +70,5 @@ runs:
         REVIEW_LANG: ${{ inputs.review-language }}
         REVIEW_STRICT: ${{ inputs.review-strict }}
       run: |
-        pwd
-        ls
         cd ${{ github.action_path }}
-        pwd
-        ls
         uv run python -m app.main ${{ inputs.pr-number }} ${{ inputs.repository }}
