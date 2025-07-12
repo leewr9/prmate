@@ -1,9 +1,5 @@
-name: "Run PRMate Review"
-description: >
-  Executes PRMate's automated code review process for a given Pull Request.
-  This workflow runs the necessary commands to analyze the code changes and
-  provide review feedback.
-
+name: "PRMate Review"
+description: "PRMate's automated review for a Pull Request"
 author: "Rooam Lee"
 branding:
   color: 'purple'
