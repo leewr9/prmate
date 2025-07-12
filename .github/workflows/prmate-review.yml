@@ -12,7 +12,7 @@ permissions:
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Required GitHub token for authenticating API calls and posting PR comments
-  OPEN_API_KEY: ${{ secrets.OPEN_API_KEY }}  # Optional OpenAI API key (required if not using Ollama)
+  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}  # Optional OpenAI API key (required if not using Ollama)
   OLLAMA_HOST: "http://127.0.0.1:11434"  # Optional Ollama host URL (used if running a local Ollama server)
   REVIEW_LANG: "Korean"  # Language of the code review output ("Korean" or "English")
   REVIEW_STRICT: False  # Whether to use strict review formatting ("True" to enable strict mode)
@@ -25,7 +25,7 @@ jobs:
     steps:
       - id: set
         run: |
-          if [ -z "${{ env.OPEN_API_KEY }}" ]; then
+          if [ -z "${{ env.OPENAI_API_KEY }}" ]; then
             echo "use_openai=false" >> "$GITHUB_OUTPUT"
           else
             echo "use_openai=true" >> "$GITHUB_OUTPUT"
@@ -57,7 +57,7 @@ jobs:
     - name: Run PRMate code review
       env:
         GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
-        OPEN_API_KEY: ${{ env.OPEN_API_KEY }}
+        OPENAI_API_KEY: ${{ env.OPENAI_API_KEY }}
         REVIEW_LANG: ${{ env.REVIEW_LANG }}
         REVIEW_STRICT: ${{ env.REVIEW_STRICT }}
       run: |
