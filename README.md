@@ -8,9 +8,6 @@ Perfect for solo developers looking for quick, intelligent code reviews.
 This action runs PRMate’s code review engine on a specified Pull Request.  
 It fetches metadata and code diffs via GitHub's API, then uses an LLM to generate structured review feedback.
 
-The review is contextualized using PR metadata, file changes, and optionally your custom prompt settings.  
-All logic runs directly inside your GitHub Actions workflow, with no need for external servers.
-
 [Advanced Usage](#advanced-usage) — including local CLI execution, debugging, and self-hosted workflows.
 
 ## What's new
@@ -19,21 +16,65 @@ Please refer to the [release page](https://github.com/leewr9/prmate/releases/lat
 
 ## Usage
 ```yml
-- name: Run PRMate Review
-  uses: leewr9/prmate-review@v1
-  with:
-    # The number of the Pull Request to review.
-    # Typically passed from the event payload.
-    #
-    # Example: 42
-    pr_number: ${{ github.event.pull_request.number }}
+on:
+  pull_request:
+    # Trigger the workflow when a Pull Request is opened or reopened
+    types: [opened, reopened]
 
-    # The full name of the repository in the format owner/repo.
-    #
-    # Default: ${{ github.repository }}
-    # Example: leewr9/prmate
-    repo_name: ${{ github.repository }}
+    # Only run the workflow for Pull Requests targeting the master branch
+    branches: [master]
 
+permissions:
+  # Read access to repository contents
+  contents: read
+
+  # Write access to issues (needed for posting review comments)
+  issues: write
+
+  # Write access to pull requests (needed for posting review comments)
+  pull-requests: write
+
+jobs:
+  job:
+    steps:
+      - name: PRMate Review
+        uses: leewr9/prmate-review@v1.0.0
+        with:
+          # The number of the Pull Request that PRMate will analyze.
+          # This value is typically passed from the event payload.
+          pr-number: ${{ github.event.pull_request.number }}
+  
+          # The full name of the repository to analyze, in the format 'owner/repository'.
+          # Default: ${{ github.repository }}
+          repository: ${{ github.repository }}
+  
+          # The token used for GitHub API authentication.
+          # Usually, this is set to the GITHUB_TOKEN secret provided by GitHub Actions.
+          #
+          # Default: ${{ github.token }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+  
+          # The OpenAI API key.
+          # Required if you are not using Ollama.
+          #
+          # Make sure to store this securely as a secret.
+          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+  
+          # The host URL of a locally running Ollama server, if you use Ollama.
+          # Default: http://127.0.0.1:11434
+          ollama-host: 'http://127.0.0.1:11434'
+  
+          # The language for the code review output.
+          # Specify either "Korean" or "English".
+          #
+          # Default: Korean
+          review-language: 'English'
+  
+          # Whether to enable strict review formatting.
+          # Set to 'True' to activate strict mode.
+          #
+          # Default: False
+          review-strict: 'True'
 ```
 
 ## Advanced Usage

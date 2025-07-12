@@ -6,22 +6,47 @@ description: >
 
 author: "Rooam Lee"
 branding:
-  color: 'purple'
-  icon: 'check'
+  color: "purple"
+  icon: "check"
 
 inputs:
-  pr_number:
+  pr-number:
     description: >
       The number of the Pull Request to review.
       This is required to specify which PR PRMate should analyze.
     required: true
-  repo_name:
+  repository:
     description: >
       The full name of the repository containing the Pull Request,
       including the owner. For example, 'owner/repository-name'.
     required: true
     default: ${{ github.repository }}
-
+  token:
+    description: >
+      GitHub token for API authentication.
+      Usually set to ${{ secrets.GITHUB_TOKEN }} in workflow.
+    required: true
+    default: ${{ github.token }}
+  openai-api-key:
+    description: >
+      Optional OpenAI API key (required if not using Ollama).
+    required: false
+    default: ""
+  ollama-host:
+    description: >
+      Optional Ollama host URL (used if running a local Ollama server).
+    required: false
+    default: "http://127.0.0.1:11434"
+  review-language:
+    description: >
+      Language of the code review output ('Korean' or 'English').
+    required: false
+    default: "Korean"
+  review-strict:
+    description: >
+      Whether to use strict review formatting ("True" to enable strict mode).
+    required: false
+    default: "False"
 
 runs:
   using: "composite"
@@ -38,4 +63,10 @@ runs:
         uv sync
 
     - name: Run PRMate review
-      run: uv run python -m app.main ${{ inputs.pr_number }} ${{ inputs.repo_name }}
+      env:
+        GITHUB_TOKEN: ${{ inputs.token }}
+        OPENAI_API_KEY: ${{ inputs.openai-api-key }}
+        OLLAMA_HOST: ${{ inputs.ollama-host }}
+        REVIEW_LANG: ${{ inputs.review-language }}
+        REVIEW_STRICT: ${{ env.review-strict }}
+      run: uv run python -m app.main ${{ inputs.pr-number }} ${{ inputs.repository }}
