@@ -1,8 +1,10 @@
 import os
 import requests
 
+USE_OPENAI = True
+
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN", None)
-OPEN_API_KEY = os.getenv("OPEN_API_KEY", None)
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", None)
 OLLAMA_HOST = os.getenv("OLLAMA_HOST", "http://127.0.0.1:11434")
 
 REVIEW_STRICT = os.getenv("REVIEW_STRICT", "False").lower() == "true"
@@ -11,9 +13,10 @@ REVIEW_LANG = os.getenv("REVIEW_LANG", "Korean")
 if not GITHUB_TOKEN:
     raise EnvironmentError("GITHUB_TOKEN environment variable is not set.")
 
-if not OPEN_API_KEY:
+if not OPENAI_API_KEY:
+    USE_OPENAI = False
     if not OLLAMA_HOST:
-        raise EnvironmentError("Neither OPEN_API_KEY nor OLLAMA_HOST is set.")
+        raise EnvironmentError("Neither OPENAI_API_KEY nor OLLAMA_HOST is set.")
 
     try:
         response = requests.get(f"{OLLAMA_HOST}/api/tags", timeout=3)
