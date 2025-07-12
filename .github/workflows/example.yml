@@ -1,9 +1,9 @@
-name: PRMate Review
+name: PRMate Review Example
 
 on:
   pull_request:
     types: [opened, reopened]
-    branches: [ "master" ]
+    branches: [master]
 
 permissions:
   contents: read
