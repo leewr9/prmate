@@ -1,4 +1,6 @@
 # PRMate
+[![Latest Release](https://img.shields.io/github/v/release/leewr9/prmate)](https://github.com/leewr9/prmate/releases)
+[![Release and Test](https://github.com/leewr9/prmate/actions/workflows/test.yml/badge.svg)](https://github.com/leewr9/prmate/actions/workflows/test.yml)
 
 Your personal AI buddy that automatically reviews your GitHub Pull Requests, offering clear, helpful, and contextual feedback on your code changes.  
 Perfect for solo developers looking for quick, intelligent code reviews.
