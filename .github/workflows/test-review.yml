@@ -1,7 +1,13 @@
 name: PRMate Review
 
 on:
-  workflow-dispatch:
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: 'PR Number'
+        required: true
+        type: number
+
 
 permissions:
   contents: read
@@ -16,7 +22,7 @@ jobs:
     - name: PRMate Review
       uses: leewr9/prmate-review@v1.0.0
       with:
-        pr-number: ${{ github.event.pull_request.number }}
+        pr-number: ${{ inputs.pr_number }} 
         repository: ${{ github.repository }}
         token: ${{ secrets.GITHUB_TOKEN }}
         openai-api-key: ${{ secrets.OPENAI_API_KEY }}
