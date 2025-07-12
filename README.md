@@ -38,7 +38,7 @@ jobs:
   job:
     steps:
     - name: PRMate Review
-      uses: leewr9/prmate-review@v1.0.0
+      uses: leewr9/prmate@v1.0.0
       with:
         # The number of the Pull Request that PRMate will analyze.
         # This value is typically passed from the event payload.
