@@ -52,7 +52,7 @@ runs:
       uses: actions/checkout@v4
       with:
         repository: leewr9/prmate
-        path: composite-action
+        path: prmate-dist
     - name: Set up Python 3.11
       uses: actions/setup-python@v3
       with:
@@ -61,7 +61,7 @@ runs:
     - name: Install uv and Sync dependencies
       shell: bash
       run: |
-        cd composite-action
+        cd prmate-dist
         python -m pip install --upgrade pip
         pip install uv
         uv sync
@@ -74,4 +74,6 @@ runs:
         OLLAMA_HOST: ${{ inputs.ollama-host }}
         REVIEW_LANG: ${{ inputs.review-language }}
         REVIEW_STRICT: ${{ inputs.review-strict }}
-      run: uv run python -m app.main ${{ inputs.pr-number }} ${{ inputs.repository }}
+      run: |
+        cd prmate-dist
+        uv run python -m app.main ${{ inputs.pr-number }} ${{ inputs.repository }}
