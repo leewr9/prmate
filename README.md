@@ -76,7 +76,7 @@ If you don’t have a server yet, you can register a `self-hosted` runner on Git
 If you're not using a self-hosted runner, you will need to use `OpenAI’s API`.
 
 ```bash
-export OPEN_API_KEY=your_openai_api_key
+export OPENAI_API_KEY=your_openai_api_key
 ```
 You do not need to install anything locally in this case.
 
@@ -88,7 +88,7 @@ To configure this project, you need to define several environment variables. The
 This is your GitHub access token, used to authenticate API requests and post comments on pull requests.
 In GitHub Actions, you can use the default `${{ secrets.GITHUB_TOKEN }}`.
 
-- `OPEN_API_KEY` **(optional)**
+- `OPENAI_API_KEY` **(optional)**
 Set this if you want to use OpenAI as the backend for code review generation.
 If you are **not using Ollama**, this variable must be provided.
 
@@ -120,7 +120,7 @@ This project includes a pre-configured GitHub Actions workflow for running PR re
 - Set environment variables for Ollama or OpenAI
 - Run on a self-hosted or GitHub-hosted runner
 
-Make sure your secrets (like `OPEN_API_KEY`) are added to the repository's GitHub Actions secrets tab.
+Make sure your secrets (like `OPENAI_API_KEY`) are added to the repository's GitHub Actions secrets tab.
 
 
 ## License  
