@@ -76,8 +76,7 @@ jobs:
   ```
 
   - Self-hosted runner registration:
-
-    https://github.com/<your-username>/<your-repository>/settings/actions/runners/new
+    `https://github.com/<your-username>/<your-repository>/settings/actions/runners/new`
 
   - Install Ollama based on OS:
     - Windows (WSL)
@@ -103,9 +102,9 @@ jobs:
 
 - OpenAI API
 
-```bash
-export OPENAI_API_KEY=your_openai_api_key
-```
+  ```bash
+  export OPENAI_API_KEY=your_openai_api_key
+  ```
 
 ### Environment Variables
 
