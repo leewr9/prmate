@@ -1,4 +1,4 @@
-name: Example Workflow
+name: example-workflow
 
 on:
   pull_request:
