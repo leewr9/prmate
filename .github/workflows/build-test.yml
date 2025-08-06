@@ -28,7 +28,7 @@ jobs:
           pip install uv
           uv sync
 
-      - name: Run pytest
+      - name: Test with pytest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
