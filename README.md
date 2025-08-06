@@ -13,30 +13,7 @@ Perfect for solo developers looking for quick, intelligent code reviews.
 - Supports both Ollama (self-hosted) and OpenAI API backends
 - Configurable review language (Korean/English) and strict mode formatting
 
-## Installation
-
-1. **Clone the Repository**
-
-   ```bash
-   git clone https://github.com/leewr9/prmate.git
-   cd prmate
-   ```
-
-2. **Install Dependencies via uv**
-
-   ```bash
-   uv sync
-   ```
-
-3. **Run the Application**
-
-   ```bash
-   uv run python -m app.main <pr_number> <repo_full_name>
-   ```
-
 ## Usage
-
-### Basic GitHub Actions Workflow
 
 ```yml
 on:
