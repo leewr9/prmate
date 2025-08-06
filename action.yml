@@ -52,7 +52,7 @@ runs:
       uses: actions/setup-python@v3
       with:
         python-version: "3.11"
-        
+
     - name: Install uv and Sync dependencies
       shell: bash
       run: |

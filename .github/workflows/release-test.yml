@@ -1,0 +1,33 @@
+name: Release Test
+
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  self-hosted-test:
+    runs-on: self-hosted
+
+    steps:
+      - name: PRMate Review
+        uses: leewr9/prmate@master
+        with:
+          pr-number: 7 # Test Pull Request
+          review-strict: "True"
+
+  ubuntu-latest-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: PRMate Review
+        uses: leewr9/prmate@master
+        with:
+          pr-number: 7 # Test Pull Request
+          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+          review-language: "English"

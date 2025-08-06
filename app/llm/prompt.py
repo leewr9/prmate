@@ -15,7 +15,7 @@ REVIEW_PROMPT_TEMPLATE = PromptTemplate(
         "- At the end of the review, include a general summary using the '>' markdown quote format.\n"
         "- Write the entire review strictly in {language}, without mixing languages.\n"
         "- Keep the review professional and easy to understand.\n"
-    )
+    ),
 )
 
 STRICT_REVIEW_PROMPT_TEMPLATE = PromptTemplate(
@@ -34,5 +34,5 @@ STRICT_REVIEW_PROMPT_TEMPLATE = PromptTemplate(
         "7. Focus on required improvements, best practices compliance, potential bugs, and risks.\n"
         "8. Keep the tone professional, clear, and concise.\n"
         "9. Any violation of these instructions should be considered an error.\n"
-    )
+    ),
 )

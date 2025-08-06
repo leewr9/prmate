@@ -1,6 +1,7 @@
 import pytest
 from app.llm.chain import ReviewChain
 
+
 def test_review_chain():
     chain = ReviewChain()
     sample_code = """

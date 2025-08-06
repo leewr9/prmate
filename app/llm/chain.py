@@ -5,13 +5,16 @@ from langchain_ollama import ChatOllama
 from app.config import USE_OPENAI, OLLAMA_HOST, REVIEW_STRICT, REVIEW_LANG
 from app.llm.prompt import REVIEW_PROMPT_TEMPLATE, STRICT_REVIEW_PROMPT_TEMPLATE
 
+
 class ReviewChain:
     def __init__(self):
         if USE_OPENAI:
             self.model = "gpt-4o-mini"
             print(f"Using OpenAI model: {self.model}")
             self.llm_client = ChatOpenAI(
-                model=self.model, temperature=0.8, max_tokens=1024,
+                model=self.model,
+                temperature=0.8,
+                max_tokens=1024,
             )
         else:
             self.model = "llama3"
@@ -39,7 +42,9 @@ class ReviewChain:
         return template
 
     def generate_review(self, code_diff: str) -> str:
-        response = self.chain.invoke({"code_report": code_diff, "language": REVIEW_LANG})
+        response = self.chain.invoke(
+            {"code_report": code_diff, "language": REVIEW_LANG}
+        )
 
         if isinstance(response, str):
             review_text = response
