@@ -7,6 +7,8 @@
 Your personal AI buddy that automatically reviews your GitHub Pull Requests, offering clear, helpful, and contextual feedback on your code changes.
 Perfect for solo developers looking for quick, intelligent code reviews.
 
+![pull_request](pull_request.png)
+
 ## Feature
 
 - Automated AI-powered code review for Pull Requests
